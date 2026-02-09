@@ -1,29 +1,37 @@
 import { useState } from 'react'
 import './App.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Home from '../components/Home';
+import User from '../components/User';
+import About from '../components/About';
+import Navbar from '../components/Navbar';
 
 function App() {
-  let [counter,setcounter] = useState(0);
+ const router = createBrowserRouter([
+  {
+    path:"/",
+    element: <><Navbar/><Home/></>
+  },
+  {
+    path:"/about",
+    element: <><Navbar/><About/></>
+  },
+  {
+    path:"/User/:username",
+    element: <><Navbar/><User/></>
+  },
+  {
+  path: "*",
+  element: <div>404 - Page Not Found</div>
+}
+]
+ )
 
-  let addValue = ()=>{
-    if (counter<20){
-      setcounter(counter+1)
-    }
-  }
 
-  let minusValue = ()=>{
-    if (counter>0){
-      setcounter(counter-1)
-    }
-  }
-  return (
+  return(
     <>
-      <h1>counter {counter}</h1>
-
-      <button onClick={addValue}>Add</button>
-      <span> </span>
-      <button onClick={minusValue}>Minus</button>
+      <RouterProvider router={router} />
     </>
   )
 }
-
 export default App

@@ -11,7 +11,7 @@ function Section() {
     const savedlist = window.localStorage.getItem("list")
     return savedlist?JSON.parse(savedlist):[]
   })
-
+   
   const [editID,setEditID] = useState(null)
 
   // for focus on the task input field
